@@ -1,2 +1,319 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/LandingPage-C3txXOlH.js","assets/GradientButton.vue_vue_type_script_setup_true_lang-CD1cCdGV.js","assets/vendor-9RD_X6-h.js","assets/AuthPage-CpWw07Sz.js","assets/supabase-CrM4VfjI.js","assets/DashboardPage-DliOGUW0.js","assets/_plugin-vue_export-helper-DlAUqK2U.js","assets/charts-CkxNTvLV.js","assets/BugsListPage-CIoSbGKH.js","assets/bugStore-CdaEW3zp.js","assets/CreateBugReportPage-CFAP3245.js","assets/CreateBugReportPage-BY3MtqXK.css"])))=>i.map(i=>d[i]);
-import{d as L,b as v,o as O,c as C,e as S,u as g,f as P,L as q,r as R,g as y,h as k,i as N,j,k as z}from"./vendor-9RD_X6-h.js";import{c as J}from"./supabase-CrM4VfjI.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))r(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const o of n.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&r(o)}).observe(document,{childList:!0,subtree:!0});function i(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function r(t){if(t.ep)return;t.ep=!0;const n=i(t);fetch(t.href,n)}})();const M="https://dxeraydhpkeyxoedjqgg.supabase.co",U="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4ZXJheWRocGtleXhvZWRqcWdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NjI2MjksImV4cCI6MjA5NzAzODYyOX0.muHYRKgbt4loJvFSOvXSsrFlaFK-uqHtAb-gttlujN8",m=J(M,U);function c(e){return e instanceof Error?e.message:typeof e=="string"?e:"Unknown error"}const E=L("auth",{state:()=>({user:null,session:null,isAuthenticated:!1,isLoading:!1,error:null,isInitialized:!1,needsEmailConfirmation:!1,confirmationEmail:null}),getters:{userId:e=>e.user?.id||null,userEmail:e=>e.user?.email||"",userName:e=>e.user?.user_metadata?.full_name||e.user?.email?.split("@")[0]||"Пользователь"},actions:{async initAuth(){this.isLoading=!0;try{const{data:{session:e},error:s}=await m.auth.getSession();if(s)throw s;this.session=e,this.user=e?.user||null,this.isAuthenticated=!!e,this.isInitialized=!0,m.auth.onAuthStateChange((i,r)=>{this.session=r,this.user=r?.user||null,this.isAuthenticated=!!r,r?.user?.email_confirmed_at&&(this.needsEmailConfirmation=!1,this.confirmationEmail=null)})}catch(e){this.error=c(e)}finally{this.isLoading=!1}},async signUp(e,s,i){this.isLoading=!0,this.error=null,this.needsEmailConfirmation=!1,this.confirmationEmail=null;try{const{data:r,error:t}=await m.auth.signUp({email:e,password:s,options:{data:{full_name:i,email_confirm:!0}}});if(t)throw t;return r.user&&!r.user.email_confirmed_at?(this.needsEmailConfirmation=!0,this.confirmationEmail=e,{success:!0,needsConfirmation:!0,email:e}):{success:!0,data:r}}catch(r){return this.error=c(r),{success:!1,error:c(r)}}finally{this.isLoading=!1}},async resendConfirmationEmail(e){this.isLoading=!0,this.error=null;try{const{error:s}=await m.auth.resend({type:"signup",email:e});if(s)throw s;return{success:!0}}catch(s){return this.error=c(s),{success:!1,error:c(s)}}finally{this.isLoading=!1}},async signIn(e,s){this.isLoading=!0,this.error=null;try{const{data:i,error:r}=await m.auth.signInWithPassword({email:e,password:s});if(r)throw r.message.includes("Email not confirmed")?(this.needsEmailConfirmation=!0,this.confirmationEmail=e,new Error("Подтвердите email перед входом. Проверьте вашу почту.")):r;return{success:!0,data:i}}catch(i){return this.error=c(i),{success:!1,error:c(i)}}finally{this.isLoading=!1}},async signOut(){this.isLoading=!0;try{const{error:e}=await m.auth.signOut();if(e)throw e;return this.user=null,this.session=null,this.isAuthenticated=!1,this.needsEmailConfirmation=!1,this.confirmationEmail=null,localStorage.removeItem("supabase.auth.token"),{success:!0}}catch(e){return console.error("Sign out error:",e),this.error=c(e),{success:!1,error:c(e)}}finally{this.isLoading=!1}}}}),V={key:1,class:"min-h-screen flex items-center justify-center"},D=v({__name:"App",setup(e){const s=E();return O(async()=>{await s.initAuth()}),(i,r)=>{const t=R("router-view");return g(s).isInitialized?(y(),C(t,{key:0})):(y(),S("div",V,[P(g(q),{class:"w-8 h-8 animate-spin text-blue-600"})]))}}}),X="modulepreload",F=function(e){return"/deploying-tracker/"+e},_={},f=function(s,i,r){let t=Promise.resolve();if(i&&i.length>0){let A=function(a){return Promise.all(a.map(h=>Promise.resolve(h).then(d=>({status:"fulfilled",value:d}),d=>({status:"rejected",reason:d}))))};document.getElementsByTagName("link");const o=document.querySelector("meta[property=csp-nonce]"),u=o?.nonce||o?.getAttribute("nonce");t=A(i.map(a=>{if(a=F(a),a in _)return;_[a]=!0;const h=a.endsWith(".css"),d=h?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${a}"]${d}`))return;const l=document.createElement("link");if(l.rel=h?"stylesheet":X,h||(l.as="script"),l.crossOrigin="",l.href=a,u&&l.setAttribute("nonce",u),document.head.appendChild(l),h)return new Promise((b,w)=>{l.addEventListener("load",b),l.addEventListener("error",()=>w(new Error(`Unable to preload CSS for ${a}`)))})}))}function n(o){const u=new Event("vite:preloadError",{cancelable:!0});if(u.payload=o,window.dispatchEvent(u),!u.defaultPrevented)throw o}return t.then(o=>{for(const u of o||[])u.status==="rejected"&&n(u.reason);return s().catch(n)})},I=k({history:N("/deploying-tracker/"),routes:[{path:"/",name:"landing",component:()=>f(()=>import("./LandingPage-C3txXOlH.js"),__vite__mapDeps([0,1,2])),meta:{requiresGuest:!0}},{path:"/auth",name:"auth",component:()=>f(()=>import("./AuthPage-CpWw07Sz.js"),__vite__mapDeps([3,2,4])),meta:{requiresGuest:!0}},{path:"/dashboard",name:"dashboard",component:()=>f(()=>import("./DashboardPage-DliOGUW0.js"),__vite__mapDeps([5,2,1,6,7,4])),meta:{requiresAuth:!0}},{path:"/bugs",name:"bugs-list",component:()=>f(()=>import("./BugsListPage-CIoSbGKH.js"),__vite__mapDeps([8,9,2,4])),meta:{requiresAuth:!0}},{path:"/create-bug",name:"create-bug",component:()=>f(()=>import("./CreateBugReportPage-CFAP3245.js"),__vite__mapDeps([10,2,9,6,4,11])),meta:{requiresAuth:!0}},{path:"/:pathMatch(.*)*",redirect:"/"}]});I.beforeEach(async(e,s,i)=>{const r=E();r.isInitialized||await r.initAuth();const t=r.isAuthenticated;e.meta.requiresAuth&&!t?i("/auth"):e.meta.requiresGuest&&t?i("/dashboard"):i()});const p=j(D),T=z();p.use(T);p.use(I);p.mount("#app");export{c as g,m as s,E as u};
+const __vite__mapDeps = (
+  i,
+  m = __vite__mapDeps,
+  d = m.f ||
+    (m.f = [
+      'assets/LandingPage-C3txXOlH.js',
+      'assets/GradientButton.vue_vue_type_script_setup_true_lang-CD1cCdGV.js',
+      'assets/vendor-9RD_X6-h.js',
+      'assets/AuthPage-CpWw07Sz.js',
+      'assets/supabase-CrM4VfjI.js',
+      'assets/DashboardPage-DliOGUW0.js',
+      'assets/plugin-vue_export-helper-DlAUqK2U.js',
+      'assets/charts-CkxNTvLV.js',
+      'assets/BugsListPage-CIoSbGKH.js',
+      'assets/bugStore-CdaEW3zp.js',
+      'assets/CreateBugReportPage-CFAP3245.js',
+      'assets/CreateBugReportPage-BY3MtqXK.css',
+    ]),
+) => i.map((i) => d[i])
+import {
+  d as L,
+  b as v,
+  o as O,
+  c as C,
+  e as S,
+  u as g,
+  f as P,
+  L as q,
+  r as R,
+  g as y,
+  h as k,
+  i as N,
+  j,
+  k as z,
+} from './vendor-9RD_X6-h.js'
+import { c as J } from './supabase-CrM4VfjI.js'
+;(function () {
+  const s = document.createElement('link').relList
+  if (s && s.supports && s.supports('modulepreload')) return
+  for (const t of document.querySelectorAll('link[rel="modulepreload"]')) r(t)
+  new MutationObserver((t) => {
+    for (const n of t)
+      if (n.type === 'childList')
+        for (const o of n.addedNodes) o.tagName === 'LINK' && o.rel === 'modulepreload' && r(o)
+  }).observe(document, { childList: !0, subtree: !0 })
+  function i(t) {
+    const n = {}
+    return (
+      t.integrity && (n.integrity = t.integrity),
+      t.referrerPolicy && (n.referrerPolicy = t.referrerPolicy),
+      t.crossOrigin === 'use-credentials'
+        ? (n.credentials = 'include')
+        : t.crossOrigin === 'anonymous'
+          ? (n.credentials = 'omit')
+          : (n.credentials = 'same-origin'),
+      n
+    )
+  }
+  function r(t) {
+    if (t.ep) return
+    t.ep = !0
+    const n = i(t)
+    fetch(t.href, n)
+  }
+})()
+const M = 'https://dxeraydhpkeyxoedjqgg.supabase.co',
+  U =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4ZXJheWRocGtleXhvZWRqcWdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NjI2MjksImV4cCI6MjA5NzAzODYyOX0.muHYRKgbt4loJvFSOvXSsrFlaFK-uqHtAb-gttlujN8',
+  m = J(M, U)
+function c(e) {
+  return e instanceof Error ? e.message : typeof e == 'string' ? e : 'Unknown error'
+}
+const E = L('auth', {
+    state: () => ({
+      user: null,
+      session: null,
+      isAuthenticated: !1,
+      isLoading: !1,
+      error: null,
+      isInitialized: !1,
+      needsEmailConfirmation: !1,
+      confirmationEmail: null,
+    }),
+    getters: {
+      userId: (e) => e.user?.id || null,
+      userEmail: (e) => e.user?.email || '',
+      userName: (e) =>
+        e.user?.user_metadata?.full_name || e.user?.email?.split('@')[0] || 'Пользователь',
+    },
+    actions: {
+      async initAuth() {
+        this.isLoading = !0
+        try {
+          const {
+            data: { session: e },
+            error: s,
+          } = await m.auth.getSession()
+          if (s) throw s
+          ;((this.session = e),
+            (this.user = e?.user || null),
+            (this.isAuthenticated = !!e),
+            (this.isInitialized = !0),
+            m.auth.onAuthStateChange((i, r) => {
+              ;((this.session = r),
+                (this.user = r?.user || null),
+                (this.isAuthenticated = !!r),
+                r?.user?.email_confirmed_at &&
+                  ((this.needsEmailConfirmation = !1), (this.confirmationEmail = null)))
+            }))
+        } catch (e) {
+          this.error = c(e)
+        } finally {
+          this.isLoading = !1
+        }
+      },
+      async signUp(e, s, i) {
+        ;((this.isLoading = !0),
+          (this.error = null),
+          (this.needsEmailConfirmation = !1),
+          (this.confirmationEmail = null))
+        try {
+          const { data: r, error: t } = await m.auth.signUp({
+            email: e,
+            password: s,
+            options: { data: { full_name: i, email_confirm: !0 } },
+          })
+          if (t) throw t
+          return r.user && !r.user.email_confirmed_at
+            ? ((this.needsEmailConfirmation = !0),
+              (this.confirmationEmail = e),
+              { success: !0, needsConfirmation: !0, email: e })
+            : { success: !0, data: r }
+        } catch (r) {
+          return ((this.error = c(r)), { success: !1, error: c(r) })
+        } finally {
+          this.isLoading = !1
+        }
+      },
+      async resendConfirmationEmail(e) {
+        ;((this.isLoading = !0), (this.error = null))
+        try {
+          const { error: s } = await m.auth.resend({ type: 'signup', email: e })
+          if (s) throw s
+          return { success: !0 }
+        } catch (s) {
+          return ((this.error = c(s)), { success: !1, error: c(s) })
+        } finally {
+          this.isLoading = !1
+        }
+      },
+      async signIn(e, s) {
+        ;((this.isLoading = !0), (this.error = null))
+        try {
+          const { data: i, error: r } = await m.auth.signInWithPassword({ email: e, password: s })
+          if (r)
+            throw r.message.includes('Email not confirmed')
+              ? ((this.needsEmailConfirmation = !0),
+                (this.confirmationEmail = e),
+                new Error('Подтвердите email перед входом. Проверьте вашу почту.'))
+              : r
+          return { success: !0, data: i }
+        } catch (i) {
+          return ((this.error = c(i)), { success: !1, error: c(i) })
+        } finally {
+          this.isLoading = !1
+        }
+      },
+      async signOut() {
+        this.isLoading = !0
+        try {
+          const { error: e } = await m.auth.signOut()
+          if (e) throw e
+          return (
+            (this.user = null),
+            (this.session = null),
+            (this.isAuthenticated = !1),
+            (this.needsEmailConfirmation = !1),
+            (this.confirmationEmail = null),
+            localStorage.removeItem('supabase.auth.token'),
+            { success: !0 }
+          )
+        } catch (e) {
+          return (
+            console.error('Sign out error:', e),
+            (this.error = c(e)),
+            { success: !1, error: c(e) }
+          )
+        } finally {
+          this.isLoading = !1
+        }
+      },
+    },
+  }),
+  V = { key: 1, class: 'min-h-screen flex items-center justify-center' },
+  D = v({
+    __name: 'App',
+    setup(e) {
+      const s = E()
+      return (
+        O(async () => {
+          await s.initAuth()
+        }),
+        (i, r) => {
+          const t = R('router-view')
+          return g(s).isInitialized
+            ? (y(), C(t, { key: 0 }))
+            : (y(), S('div', V, [P(g(q), { class: 'w-8 h-8 animate-spin text-blue-600' })]))
+        }
+      )
+    },
+  }),
+  X = 'modulepreload',
+  F = function (e) {
+    return '/deploying-tracker/' + e
+  },
+  _ = {},
+  f = function (s, i, r) {
+    let t = Promise.resolve()
+    if (i && i.length > 0) {
+      let A = function (a) {
+        return Promise.all(
+          a.map((h) =>
+            Promise.resolve(h).then(
+              (d) => ({ status: 'fulfilled', value: d }),
+              (d) => ({ status: 'rejected', reason: d }),
+            ),
+          ),
+        )
+      }
+      document.getElementsByTagName('link')
+      const o = document.querySelector('meta[property=csp-nonce]'),
+        u = o?.nonce || o?.getAttribute('nonce')
+      t = A(
+        i.map((a) => {
+          if (((a = F(a)), a in _)) return
+          _[a] = !0
+          const h = a.endsWith('.css'),
+            d = h ? '[rel="stylesheet"]' : ''
+          if (document.querySelector(`link[href="${a}"]${d}`)) return
+          const l = document.createElement('link')
+          if (
+            ((l.rel = h ? 'stylesheet' : X),
+            h || (l.as = 'script'),
+            (l.crossOrigin = ''),
+            (l.href = a),
+            u && l.setAttribute('nonce', u),
+            document.head.appendChild(l),
+            h)
+          )
+            return new Promise((b, w) => {
+              ;(l.addEventListener('load', b),
+                l.addEventListener('error', () => w(new Error(`Unable to preload CSS for ${a}`))))
+            })
+        }),
+      )
+    }
+    function n(o) {
+      const u = new Event('vite:preloadError', { cancelable: !0 })
+      if (((u.payload = o), window.dispatchEvent(u), !u.defaultPrevented)) throw o
+    }
+    return t.then((o) => {
+      for (const u of o || []) u.status === 'rejected' && n(u.reason)
+      return s().catch(n)
+    })
+  },
+  I = k({
+    history: N('/deploying-tracker/'),
+    routes: [
+      {
+        path: '/',
+        name: 'landing',
+        component: () => f(() => import('./LandingPage-C3txXOlH.js'), __vite__mapDeps([0, 1, 2])),
+        meta: { requiresGuest: !0 },
+      },
+      {
+        path: '/auth',
+        name: 'auth',
+        component: () => f(() => import('./AuthPage-CpWw07Sz.js'), __vite__mapDeps([3, 2, 4])),
+        meta: { requiresGuest: !0 },
+      },
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () =>
+          f(() => import('./DashboardPage-DliOGUW0.js'), __vite__mapDeps([5, 2, 1, 6, 7, 4])),
+        meta: { requiresAuth: !0 },
+      },
+      {
+        path: '/bugs',
+        name: 'bugs-list',
+        component: () =>
+          f(() => import('./BugsListPage-CIoSbGKH.js'), __vite__mapDeps([8, 9, 2, 4])),
+        meta: { requiresAuth: !0 },
+      },
+      {
+        path: '/create-bug',
+        name: 'create-bug',
+        component: () =>
+          f(
+            () => import('./CreateBugReportPage-CFAP3245.js'),
+            __vite__mapDeps([10, 2, 9, 6, 4, 11]),
+          ),
+        meta: { requiresAuth: !0 },
+      },
+      { path: '/:pathMatch(.*)*', redirect: '/' },
+    ],
+  })
+I.beforeEach(async (e, s, i) => {
+  const r = E()
+  r.isInitialized || (await r.initAuth())
+  const t = r.isAuthenticated
+  e.meta.requiresAuth && !t ? i('/auth') : e.meta.requiresGuest && t ? i('/dashboard') : i()
+})
+const p = j(D),
+  T = z()
+p.use(T)
+p.use(I)
+p.mount('#app')
+export { c as g, m as s, E as u }
