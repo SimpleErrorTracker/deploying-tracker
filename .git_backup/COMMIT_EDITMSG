@@ -1,0 +1,15 @@
+Revert "new manualChunks"
+
+This reverts commit 1c750f0666d89081219aa0f4970a78ec9a5a85dd.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Revert currently in progress.
+#
+# Changes to be committed:
+#	modified:   vite.config.ts
+#
