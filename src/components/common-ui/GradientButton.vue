@@ -6,14 +6,14 @@
     :rel="external ? 'noopener noreferrer' : undefined"
     :type="!isLink ? props.type : undefined"
     :disabled="disabled || loading"
-    class="group relative flex w-full cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 bg-[length:200%_100%] text-center font-semibold text-white shadow-lg transition-all duration-500 ease-out hover:scale-[1.01] hover:bg-right focus:ring-4 focus:ring-blue-400/40 focus:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
     :class="[
       sizeClasses[props.size],
       variantClasses[props.variant],
-      fullWidth ? 'w-full' : 'w-auto',
+      fullWidth ? 'w-full' : 'w-fit',
       props.customClass,
       loading ? 'cursor-wait' : '',
     ]"
+    class="group relative flex cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-lg bg-[length:200%_100%] text-center font-semibold text-white shadow-lg transition-all duration-500 ease-out hover:scale-[1.01] hover:bg-right focus:ring-4 focus:ring-blue-400/40 focus:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
     @click="handleClick"
   >
     <span
@@ -112,12 +112,14 @@ const sizeClasses = {
 }
 
 const variantClasses = {
-  primary: 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 ',
-  secondary: 'bg-gradient-to-r from-blue-700 to-gray-800 hover:from-green-800 hover:to-green-900 ',
-  outline: 'bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 shadow-none',
+  primary:
+    ' bg-gradient-to-r from-blue-500 to-blue-900  bg-gradient-to-r hover:from-blue-600 hover:blue-700 hover:to-blue-800 ', //blue/dark
+  secondary:
+    ' bg-gradient-to-r from-blue-500 to-blue-900  bg-gradient-to-r hover:from-sky-800 hover:green-600 hover:to-lime-600 ', //green //blue with darkblue border
   gradient:
-    'bg-gradient-to-r from-blue-500  to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 ',
-  red: 'bg-gradient-to-r from-blue-500  to-pink-500 hover:from-red-600 hover:yellow-600 hover:to-red-600 ',
+    ' bg-gradient-to-r from-blue-500 to-blue-900  bg-gradient-to-r hover:from-blue-600 hover:purple-600 hover:to-pink-600 ', //purple/pink
+  red: ' bg-gradient-to-r from-blue-500 to-blue-900  bg-gradient-to-r hover:from-rose-700 hover:red-600 hover:to-red-500 ', //red
+  outline: 'bg-transparent border-2 border-blue-600 !text-blue-600 hover:bg-blue-50',
 }
 
 const icons: Record<IconType, string> = {

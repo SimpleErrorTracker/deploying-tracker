@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
-  base: '/',
+  base: '/deploying-tracker/',
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
@@ -17,6 +17,9 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('vue') || id.includes('pinia') || id.includes('vue-router')) {
@@ -31,7 +34,6 @@ export default defineConfig({
             if (id.includes('lucide-vue-next')) {
               return 'icons'
             }
-            // всё остальное из node_modules — в общий vendor
             return 'vendor'
           }
         },

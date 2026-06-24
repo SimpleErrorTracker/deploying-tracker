@@ -6,7 +6,6 @@
         <component :is="iconComponent" class="w-8 h-8" />
       </div>
 
-      <!-- Badge с правильными Tailwind классами -->
       <div class="text-sm font-medium px-2 py-1 rounded" :class="colorBadgeClass">
         {{ colorBadgeText }}
       </div>
@@ -15,15 +14,12 @@
     <!-- Название метрики -->
     <h3 class="text-sm font-medium text-gray-600 mb-2">{{ title }}</h3>
 
-    <!-- Числовое значение -->
     <p class="text-3xl font-bold text-gray-900 mb-2">
       {{ formattedValue }}
     </p>
 
-    <!-- Описание -->
-    <p class="text-sm text-gray-500">{{ description }}</p>
+    <p class="text-sm text-blue-500">{{ description }}</p>
 
-    <!-- Дополнительная информация при hover -->
     <div v-if="additionalInfo" class="mt-3 pt-3 border-t border-gray-200">
       <p class="text-xs text-gray-400">{{ additionalInfo }}</p>
     </div>

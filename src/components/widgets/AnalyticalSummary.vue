@@ -2,7 +2,7 @@
   <div class="bg-white rounded-2xl shadow-lg p-6">
     <!-- Header -->
     <div class="flex items-center gap-3 mb-8 pb-4 border-b border-gray-200">
-      <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-2.5 rounded-xl shadow-lg">
+      <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-2.5 rounded-xl shadow-lg">
         <FileText class="w-6 h-6 text-white" />
       </div>
       <div>

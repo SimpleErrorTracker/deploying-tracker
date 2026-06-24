@@ -1,21 +1,33 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-8">
     <div class="mt-10 max-w-7xl mx-auto px-4">
       <!-- Header -->
-      <div class="mb-8 p-5 shadow-lg flex justify-between items-start bg-white rounded-2xl">
+      <div class="mb-8 p-5 shadow-lg xl:flex justify-between items-start bg-white rounded-2xl">
         <div class="flex-1">
           <SectionTitle
             title="Дашборд качества программного продукта"
             description="Общая картина состояния проекта и метрики качества ПО"
             :show-line="false"
           />
-          <div>
+          <div class="py-4">
             <p class="text-sm font-medium text-gray-700">{{ authStore.userName }}</p>
             <p class="text-xs text-gray-500">{{ authStore.userEmail }}</p>
           </div>
         </div>
 
         <div class="flex flex-col align-end gap-4">
+          <RouterLink to="/create-bug">
+            <GradientButton variant="secondary" title="Новый репорт" custom-class="justify-between">
+              <template #lucidicon><BugIcon class="w-4 h-4" /></template>
+            </GradientButton>
+          </RouterLink>
+
+          <RouterLink to="/bugs">
+            <GradientButton variant="gradient" title="Список багов" custom-class="justify-between">
+              <template #lucidicon><List class="w-4 h-4" /></template>
+            </GradientButton>
+          </RouterLink>
+
           <GradientButton
             variant="red"
             @click="handleLogout"
@@ -23,24 +35,6 @@
             custom-class="justify-between"
           >
             <template #lucidicon><LogOut class="w-4 h-4" /></template>
-          </GradientButton>
-
-          <GradientButton
-            variant="secondary"
-            link="/create-bug"
-            title="Новый репорт"
-            custom-class="justify-between"
-          >
-            <template #lucidicon><BugIcon class="w-4 h-4" /></template>
-          </GradientButton>
-
-          <GradientButton
-            variant="gradient"
-            link="/bugs"
-            title="Список багов"
-            custom-class="justify-between"
-          >
-            <template #lucidicon><List class="w-4 h-4" /></template>
           </GradientButton>
         </div>
       </div>
@@ -146,35 +140,37 @@
       </div>
     </div>
 
-    <div
-      v-if="showLogoutModal"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-      @click.self="showLogoutModal = false"
-    >
-      <div class="bg-white rounded-2xl p-6 max-w-md mx-4 shadow-2xl transform transition-all">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="bg-red-100 p-2 rounded-full">
-            <LogOut class="w-6 h-6 text-red-600" />
+    <Transition name="modal" appear>
+      <div
+        v-if="showLogoutModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        @click.self="showLogoutModal = false"
+      >
+        <div class="bg-white rounded-2xl p-6 max-w-md mx-4 shadow-2xl transform transition-all">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-red-100 p-2 rounded-full">
+              <LogOut class="w-6 h-6 text-red-600" />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Выход из аккаунта</h3>
           </div>
-          <h3 class="text-xl font-bold text-gray-900">Выход из аккаунта</h3>
-        </div>
-        <p class="text-gray-600 mb-6">Вы уверены, что хотите выйти из аккаунта?</p>
-        <div class="flex gap-3">
-          <button
-            @click="showLogoutModal = false"
-            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Отмена
-          </button>
-          <button
-            @click="confirmLogout"
-            class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
-          >
-            Выйти
-          </button>
+          <p class="text-gray-600 mb-6">Вы уверены, что хотите выйти из аккаунта?</p>
+          <div class="flex gap-3">
+            <button
+              @click="showLogoutModal = false"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Отмена
+            </button>
+            <button
+              @click="confirmLogout"
+              class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+            >
+              Выйти
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 

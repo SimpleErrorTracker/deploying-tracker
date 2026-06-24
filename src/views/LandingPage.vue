@@ -21,7 +21,7 @@
             >
               Войти
             </router-link>
-            <GradientButton title="Начать" link="/auth?tab=register" />
+            <router-link to="/auth?tab=register"><GradientButton title="Начать" /></router-link>
           </div>
         </div>
 
@@ -36,9 +36,7 @@
 
           <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
             Отслеживайте ошибки
-            <span
-              class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
-            >
+            <span class="bg-gradient-to-b from-blue-600 to-blue-700 bg-clip-text text-transparent">
               эффективно
             </span>
           </h1>
@@ -48,45 +46,74 @@
             исправлением ошибок
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div>
-              <GradientButton title="Начать бесплатно" link="/auth?tab=register" />
+              <RouterLink to="/auth?tab=register">
+                <GradientButton
+                  title="Начать бесплатно"
+                  custom-class=" border-2 border-blue-600/20"
+                />
+              </RouterLink>
             </div>
-            <a
-              href="#features"
-              class="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:border-gray-400 hover:bg-gray-50 transition-all"
+            <GradientButton
+              variant="outline"
+              title="Узнать больше"
+              link="#features"
+              :full-width="false"
             >
-              Узнать больше
-            </a>
+            </GradientButton>
           </div>
         </div>
 
-        <!-- Dashboard Preview -->
-        <div class="mt-20 relative">
+        <div
+          class="relative mt-10 bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transition-all hover:shadow-3xl hover:scale-[1.01] duration-500"
+        >
+          <!-- Заголовок фрейма -->
           <div
-            class="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent blur-3xl"
-          ></div>
-          <div
-            class="relative bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200"
+            class="bg-gray-100/80 backdrop-blur-sm px-4 py-3 flex items-center gap-2 border-b border-gray-200"
           >
-            <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+            <div class="flex gap-1.5">
               <div class="w-3 h-3 rounded-full bg-red-500"></div>
               <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
               <div class="w-3 h-3 rounded-full bg-green-500"></div>
-              <div class="text-sm text-gray-500 ml-2">ErrorTracker Dashboard</div>
             </div>
-            <img
-              src="https://placehold.co/1200x600/1e293b/ffffff?text=Dashboard+Preview"
+            <div class="flex-1 text-center">
+              <span class="text-xs text-gray-500 font-mono bg-white/50 px-3 py-1 rounded-full">
+                ErrorTracker Dashboard
+              </span>
+            </div>
+            <div class="w-16"></div>
+          </div>
+
+          <!-- Адаптивное изображение -->
+          <div class="relative">
+            <!-- Используем import вариант -->
+            <ResponsiveImage
+              variant="dashboard"
               alt="Dashboard Preview"
-              class="w-full"
+              class-name="w-full h-auto"
+              loading="lazy"
+              format="image/png"
+              @load="onImageLoad"
+              @error="onImageError"
             />
+
+            <!-- Скелетон загрузки -->
+            <div
+              v-if="!isLoaded"
+              class="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse"
+            >
+              <div class="absolute inset-0 flex items-center justify-center">
+                <Loader2 class="w-8 h-8 text-blue-500 animate-spin" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Features Section -->
-    <div id="features" class="bg-white py-20">
+    <div id="features" class="py-20">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Возможности платформы</h2>
@@ -94,7 +121,7 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="text-center p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="text-center bg-white p-6 rounded-2xl hover:shadow-lg transition-all">
             <div class="bg-blue-100 p-3 rounded-2xl inline-block mb-4">
               <PlusCircle class="w-8 h-8 text-blue-600" />
             </div>
@@ -104,7 +131,7 @@
             </p>
           </div>
 
-          <div class="text-center p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="text-center bg-white p-6 rounded-2xl hover:shadow-lg transition-all">
             <div class="bg-purple-100 p-3 rounded-2xl inline-block mb-4">
               <List class="w-8 h-8 text-purple-600" />
             </div>
@@ -114,7 +141,7 @@
             </p>
           </div>
 
-          <div class="text-center p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="text-center bg-white p-6 rounded-2xl hover:shadow-lg transition-all">
             <div class="bg-green-100 p-3 rounded-2xl inline-block mb-4">
               <BarChart3 class="w-8 h-8 text-green-600" />
             </div>
@@ -126,17 +153,19 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 py-16">
-      <div class="max-w-4xl mx-auto text-center px-4">
+    <div class="bg-gradient-to-b from-blue-600 to-blue-700 py-16">
+      <div class="flex justify-center items-center flex-col max-w-4xl mx-auto text-center px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Готовы начать?</h2>
         <p class="text-xl text-blue-100 mb-8">
           Присоединяйтесь к командам, которые уже используют ErrorTracker
         </p>
-        <router-link
-          to="/auth?tab=register"
-          class="inline-block px-8 py-3 bg-white text-blue-600 rounded-xl font-medium hover:bg-gray-100 transition-all shadow-lg"
-        >
-          Создать аккаунт
+        <router-link class="max-w-fit" to="/auth?tab=register">
+          <GradientButton
+            custom-class="bg-white"
+            variant="outline"
+            title="Создать аккаунт"
+            :full-width="false"
+          />
         </router-link>
       </div>
     </div>
@@ -151,6 +180,22 @@
 </template>
 
 <script setup lang="ts">
-import GradientButton from '@/components/common-ui/GradientButton.vue'
+import { ref } from 'vue'
 import { Bug, Sparkles, PlusCircle, List, BarChart3 } from 'lucide-vue-next'
+import { Loader2 } from 'lucide-vue-next'
+import GradientButton from '@/components/common-ui/GradientButton.vue'
+import ResponsiveImage from '@/components/common-ui/ResponsiveImage.vue'
+
+const isLoaded = ref(false)
+
+const onImageLoad = () => {
+  isLoaded.value = true
+  console.log('✅ Dashboard preview loaded')
+}
+
+const onImageError = () => {
+  console.error('❌ Failed to load dashboard preview')
+  // Показываем fallback
+  isLoaded.value = true // Скрываем скелетон даже при ошибке
+}
 </script>

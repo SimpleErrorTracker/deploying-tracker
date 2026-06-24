@@ -111,7 +111,7 @@
 
       <!-- Кнопка обновления -->
       <div class="flex-shrink-0">
-        <GradientButton @click="handleRefresh" title="Обновить данные">
+        <GradientButton variant="outline" @click="handleRefresh" title="Обновить данные">
           <template #lucidicon>
             <RefreshCw class="w-4 h-4" :class="{ 'animate-spin': isRefreshing }" />
           </template>
@@ -124,7 +124,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { Calendar, ChevronDown, Check, RefreshCw, Badge } from 'lucide-vue-next'
-import GradientButton from '../common-ui/GradientButton.vue';
+import GradientButton from '../common-ui/GradientButton.vue'
 
 const props = defineProps<{
   period: string

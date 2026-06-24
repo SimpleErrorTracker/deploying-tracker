@@ -10,7 +10,10 @@
       <slot>{{ title }}</slot>
     </component>
 
-    <p v-if="description || $slots.description" class="mt-3 text-sm text-gray-600 md:text-base">
+    <p
+      v-if="description || $slots.description"
+      class="mt-3 hidden xl:flex text-sm text-blue-600 md:text-base"
+    >
       <slot name="description">
         {{ description }}
       </slot>
